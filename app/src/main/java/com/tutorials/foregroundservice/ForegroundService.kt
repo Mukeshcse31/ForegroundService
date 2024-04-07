@@ -5,6 +5,9 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.RingtoneManager
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 
@@ -31,6 +34,10 @@ class ForegroundService : Service() {
 
         val notification = NotificationCompat.Builder(this, "channelId")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.notification_channel))
+            .setAutoCancel(true)
+            .setPriority(1)
+            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
             .setContentText("Foreground Service")
             .setContentTitle("Foreground Title")
             .build()
